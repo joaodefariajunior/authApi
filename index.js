@@ -3,6 +3,8 @@ const app = express();
 const mongoose=  require('mongoose');
 const dotenv=require('dotenv');
 const bodyParser = require('body-parser')
+const postRoute=require('./routes/posts');
+
 dotenv.config();
 
 mongoose.connect(process.env.DB_CONNECT,{ useNewUrlParser: true },
@@ -21,8 +23,8 @@ const  authRoute=require('./routes/auth');
 
 //Route middleware
 
-app.use('/api/user',authRoute)
-
+app.use('/api/user',authRoute);
+app.use('/api/posts',postRoute);
 
 
 app.listen(3000,()=>console.log("We're on "))

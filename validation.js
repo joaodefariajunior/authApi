@@ -16,17 +16,19 @@ const registerValidation =  async (data) => {
        console.log(error);
     }
 }
+const loginValidation =  async (data) => {
+    try {
+        const schema = Joi.object({
+            email: Joi.string().min(6).required().email(),
+            password: Joi.string().min(6).required()
 
-// const loginValidation = data => {
-
-//     const schema = {
-
-//         email: Joi.string().min(6).required().email(),
-//         password: Joi.string().min(6).required()
-
-//     };
-//     return Joi.validate(data, schema)
-// }
+        });
+         const result= await schema.validateAsync(data)
+         return result;
+    } catch (error) {
+       console.log(error);
+    }
+}
 
 module.exports.registerValidation = registerValidation;
-// module.exports.registerValidation = loginValidation;
+module.exports.loginValidation = loginValidation;
